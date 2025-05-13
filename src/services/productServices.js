@@ -24,17 +24,11 @@ module.exports = function (Product) {
     const { id } = filter;
 
     if (!name || !price || !brand || !version)
-      throw new Error({
-        message: "preencha todos os campos",
-        status: 422,
-      });
+      throw new Error("preencha todos os campos");
 
     const product = await Product.findById(id);
     if (!product)
-      throw new Error({
-        message: "produto não encontrado",
-        status: 404,
-      });
+      throw new Error("produto não encontrado");
 
     const update = await Product.findByIdAndUpdate(
       id,
@@ -57,10 +51,7 @@ module.exports = function (Product) {
 
     const product = await Product.findById(id);
     if (!product)
-      throw new Error({
-        message: "produto não encontrado",
-        status: 404,
-      });
+      throw new Error("produto não encontrado");
 
     await Product.findByIdAndDelete(id);
 
